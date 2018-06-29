@@ -1,0 +1,13 @@
+.md-body {
+    height: 100%;
+    margin: 0;
+    padding: 20px;
+    background-color: #1b1d1c;
+    color: white;
+    text-align: left;
+    font-size: 12px;
+}
+
+.md-body h1 {
+    margin: 0;
+}
