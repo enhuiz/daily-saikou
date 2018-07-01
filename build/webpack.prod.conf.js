@@ -7,12 +7,18 @@ const fs = require('fs')
 
 function scanCharacters() {
   let characters = new Set()
-  glob.sync('./src/pages/**/*.{html,md,vue}').forEach(path => {
+
+  function updateCharacters(path) {
     let str = (fs.readFileSync(path, 'utf8') || '')
     characters = new Set([...characters, ...str])
-  })
-  let digits = '0123456789';
-  return [...characters, ...digits]
+  }
+
+  glob.sync('./src/pages/**/*.{html,md,vue}').forEach(updateCharacters)
+  glob.sync('./src/components/*.vue').forEach(updateCharacters)
+  
+  let digits = '0123456789'
+  characters = new Set([...characters, ...digits])
+  return [...characters];
 }
 
 const prodWebpackConfig = merge(baseWebpackConfig, {
