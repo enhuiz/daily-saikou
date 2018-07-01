@@ -41,7 +41,7 @@ function getToday() {
 }
 
 function getDueString() {
-  return document.location.pathname.replace("index.html", "").slice(1);
+  return /([0-9]+\/[0-9]+\/[0-9]+)/.exec(location.pathname)[0];
 }
 
 function getDue() {
