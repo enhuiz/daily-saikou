@@ -1,5 +1,5 @@
 <template>
-  <saikou v-bind:ps="ps">
+  <saikou v-bind:postscript="postscript">
     <div class="placed">
       <p>
         <span>字</span> 大
@@ -10,7 +10,7 @@
 
 <script>
 import saikou from "components/saikou.vue";
-import ps from "./ps.md";
+import postscript from "./postscript.md";
 
 export default {
   components: {
@@ -18,10 +18,9 @@ export default {
   },
   data() {
     return {
-      ps: ps
+      postscript: postscript
     };
-  },
-  methods: {}
+  }
 };
 </script>
 

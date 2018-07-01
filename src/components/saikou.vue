@@ -16,7 +16,7 @@
       </swiper-slide>
       <swiper-slide>
         <div class="md-body">
-          <span v-html="ps"></span>
+          <span v-html="postscript"></span>
         </div>
         <logo></logo>
       </swiper-slide>
@@ -32,7 +32,7 @@ import logo from "components/logo.vue";
 
 import "swiper/dist/css/swiper.css";
 import "assets/css/fonts.css";
-import "assets/css/markdown.css";
+import "assets/css/postscript.css";
 
 function getToday() {
   let today = new Date();
@@ -50,7 +50,7 @@ function getDue() {
 
 export default {
   name: "saikou",
-  props: ["ps"],
+  props: ["postscript"],
   filters: {
     formatDate(date) {
       return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join(
@@ -125,7 +125,7 @@ body {
   width: fit-content;
   height: fit-content;
   text-align: center;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
