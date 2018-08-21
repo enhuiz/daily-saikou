@@ -110,3 +110,5 @@ function createToday() {
     let dir = makeDir(new Date());
     writeFiles(dir);
 }
+
+createToday();
