@@ -1,13 +1,20 @@
-.md-body {
-    height: 100%;
-    margin: 0;
-    padding: 20px;
-    background-color: #1b1d1c;
-    color: white;
-    text-align: left;
-    font-size: 12px;
+.postscript {
+  height: 200%;
+  width: auto;
+  padding: 8vw;
+  padding-top: 5vw;
+  background-color: #1b1d1c;
+  color: white;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 400;
 }
 
-.md-body h1 {
-    margin: 0;
+.postscript span {
+  overflow-wrap: break-word;
+}
+
+.postscript h1 {
+  margin: 0;
+  font-weight: 400;
 }

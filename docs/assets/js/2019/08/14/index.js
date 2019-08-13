@@ -57,7 +57,7 @@
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		1: 0
+/******/ 		2: 0
 /******/ 	};
 /******/
 /******/ 	var deferredModules = [];
@@ -148,29 +148,12 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push([184,0]);
+/******/ 	deferredModules.push([182,0]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ 11:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(172);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var add = __webpack_require__(2).default
-var update = add("357d46b9", content, false, {});
-// Hot Module Replacement
-if(false) {}
-
-/***/ }),
 
 /***/ 14:
 /***/ (function(module, exports, __webpack_require__) {
@@ -8319,10 +8302,45 @@ if(false) {}
 
 /***/ }),
 
-/***/ 153:
+/***/ 154:
 /***/ (function(module, exports) {
 
-module.exports = "<h1 id=\"关于\">关于</h1>\n<h2 id=\"字大\">字大</h2>\n<p>自大的人往往难以自我察觉，要么察觉了不愿承认，要么承认了不愿表露，所以一旦聊起，就喜欢用遮遮掩掩的方式。</p>\n<p>因为起初的一些优势而生活在臆想的光环里、理所当然地四处讨乞优越感的人，一边不受人待见，一边陷入自卑。</p>\n<p>尽管如此，他们仍一如既往地坚持自我。从自己的立场观察大局，用自己的感受判定结果。</p>\n<p>不知是该同情还是歌颂啊。</p>\n<h2 id=\"成因\">成因</h2>\n<p>毕业之后暂时闲来无事，想重新捡起网页制作的勾当。于是就做了这个「每日神经病」专题，做点乱七八糟的东西。</p>\n<p>虽说是每日，但未必会日常发，不过得闲就做。</p>\n";
+module.exports = "<h1 id=\"props\">Props</h1>\n<p>props: {\n  title: String,\n  likes: Number,\n  isPublished: Boolean,\n  commentIds: Array,\n  author: Object,\n  callback: Function,\n  contactsPromise: Promise // or any other constructor\n}</p>\n";
+
+/***/ }),
+
+/***/ 155:
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAACXUlEQVR42u3ZvWsTYRzA8afWl2ramtfLPZfzcndWN3EUX0BwFFxFXFxE0M1/wFHqy+DiqoiLFCf/ABGXgihCERwEsZpqcneJRVuUaq2/C1WSmEsvxfH7gWfI+uV39/ySKAUAAAAAAAAAAAAA6LWm1Jbazrz9XKlt1NiEpYxrhqZ7Nyxap6gx/PSNNI3qkUj7c6H2nsrnHVQZQvzYhoZ7UQIuRpa/HBbt41QZQjOfnwxN74HEW41PoJ1bb5jC9IJJe197+ip71+IjMZ+Fxcp+yqQNaLrTf+K1A1peKzCd0/G7kTobiFeXSHvznQHlrARm9XZdqQyFNhAa1Uvy+K50BbT8X5F2XzSMykEKDfBZZbNN05vpmb71x9j/FhrOhRmlRimVoFVyjsne97ZfwHZE7T9s5fzdlOq/PG8Nyu5lCbiUFDDQ/kdZsA9Tq4+GYZQDy3vUft8lTaDlf5cF+wq1+q4u1ZMS6FNSvL+Xiek+/jo+XqJY1+PrjkWmd31gvPXT1H6N27jHF62LkeXNpgkYT2G96J2nWuftm9VVCTOfKmB8DGeaal3ffUtT8v77kDagXDY3qNZhIacdCfg+dUDTvUa1zu+/E5WC7H9PUgcsu2eotslbONJevZWzD1CtR1SunpApfDdokZZ4P2UPvLeg1C6K/TOF5UxLu1flXbicsL6sRtp/3TCco9RKuo1L9pRM2B2ZtMXuyfN/yHS+bJTcc6+U2k6pZCM1NVEIi/bZqOzdl5BzcuPOhuaem1HBPkS84X6dGZUzFv+lyU/5AAAAAAAAAAAAAAAAAAD8d78BfX7DXk2PWjMAAAAASUVORK5CYII="
+
+/***/ }),
+
+/***/ 156:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/hit.76aa0cf.jpg";
+
+/***/ }),
+
+/***/ 157:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/idle.57eddcd.jpg";
+
+/***/ }),
+
+/***/ 158:
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAACZklEQVR42u3dv6uNcQDH8S/XNRD5kcnP5Eex6MooyqY7UOpmUAYlk1+LxWA1oOiWDFIWBiWUgVsyKTYlitF/QGw+T8/ZDOqc8326z/F61Wc8t6fnvs/t1P12nlIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKtuYHcr2Z8uGeP2KbGU27VayGMxmT7Nb2aohXn84O5rtcitZDM5lP7N32bohXv8q+5SddyuZhKBfZ5+zC24lkxD0QvYlu+hWImgQNAgaQQsaQYOgQdAgaAQtaAQNggZBg6ARtKARNAgaBA2CRtCCRtDQWJ9tr7yrYwr6UjZVcUuzJZLot7lsvvLejCHob9m1bEvFbc42SKLfbmQ/Ku/3GIL+lX3PPlbch+y2JPptZ2m/aqv2DmYzZbjvtruc3R38tb9TcTezs5KgizfdTAfbN/jMDwAAAADAeDTnF6Y72pTbTU3NIZzm7MLuDtY87GfTCNe6PFtd2n+bd7E1xSGl3sXc/NIeZV87WPN8lPsjXO+x7GFpz1p0seYhRWtl0i/Ns/+ac8rXK+9ZaU/KvRjhWk+X9sFBzZOwFjrYk8Ebnh5pzv5uy/ZW3pXsffZyhGs9kz3P7pX2eYW1d2TwMQf+cip7O4agH5f2gD8IGgQNgkbQgkbQIGgQNAgaQQsaQYOgQdAgaAQtaAQNggZBI2hBI2hBI2gQNAia/9bxQYwPBM0k2JOdzE6M8DNmS/uMwjm3k0mwNTuQ7XArAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgn/4AfZmMEN+754sAAAAASUVORK5CYII="
+
+/***/ }),
+
+/***/ 159:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/gun.d9a641d.png";
 
 /***/ }),
 
@@ -8332,27 +8350,6 @@ module.exports = "<h1 id=\"关于\">关于</h1>\n<h2 id=\"字大\">字大</h2>\n
 exports = module.exports = __webpack_require__(1)(false);
 // Module
 exports.push([module.i, "/**\n * Swiper 4.5.0\n * Most modern mobile touch slider and framework with hardware accelerated transitions\n * http://www.idangero.us/swiper/\n *\n * Copyright 2014-2019 Vladimir Kharlampidi\n *\n * Released under the MIT License\n *\n * Released on: February 22, 2019\n */\n.swiper-container {\n  margin: 0 auto;\n  position: relative;\n  overflow: hidden;\n  list-style: none;\n  padding: 0;\n  /* Fix of Webkit flickering */\n  z-index: 1;\n}\n.swiper-container-no-flexbox .swiper-slide {\n  float: left;\n}\n.swiper-container-vertical > .swiper-wrapper {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column;\n}\n.swiper-wrapper {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  z-index: 1;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-transition-property: -webkit-transform;\n  transition-property: -webkit-transform;\n  -o-transition-property: transform;\n  transition-property: transform;\n  transition-property: transform, -webkit-transform;\n  -webkit-box-sizing: content-box;\n  box-sizing: content-box;\n}\n.swiper-container-android .swiper-slide,\n.swiper-wrapper {\n  -webkit-transform: translate3d(0px, 0, 0);\n  transform: translate3d(0px, 0, 0);\n}\n.swiper-container-multirow > .swiper-wrapper {\n  -webkit-flex-wrap: wrap;\n  -ms-flex-wrap: wrap;\n  flex-wrap: wrap;\n}\n.swiper-container-free-mode > .swiper-wrapper {\n  -webkit-transition-timing-function: ease-out;\n  -o-transition-timing-function: ease-out;\n  transition-timing-function: ease-out;\n  margin: 0 auto;\n}\n.swiper-slide {\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0;\n  width: 100%;\n  height: 100%;\n  position: relative;\n  -webkit-transition-property: -webkit-transform;\n  transition-property: -webkit-transform;\n  -o-transition-property: transform;\n  transition-property: transform;\n  transition-property: transform, -webkit-transform;\n}\n.swiper-slide-invisible-blank {\n  visibility: hidden;\n}\n/* Auto Height */\n.swiper-container-autoheight,\n.swiper-container-autoheight .swiper-slide {\n  height: auto;\n}\n.swiper-container-autoheight .swiper-wrapper {\n  -webkit-box-align: start;\n  -webkit-align-items: flex-start;\n  -ms-flex-align: start;\n  align-items: flex-start;\n  -webkit-transition-property: height, -webkit-transform;\n  transition-property: height, -webkit-transform;\n  -o-transition-property: transform, height;\n  transition-property: transform, height;\n  transition-property: transform, height, -webkit-transform;\n}\n/* 3D Effects */\n.swiper-container-3d {\n  -webkit-perspective: 1200px;\n  perspective: 1200px;\n}\n.swiper-container-3d .swiper-wrapper,\n.swiper-container-3d .swiper-slide,\n.swiper-container-3d .swiper-slide-shadow-left,\n.swiper-container-3d .swiper-slide-shadow-right,\n.swiper-container-3d .swiper-slide-shadow-top,\n.swiper-container-3d .swiper-slide-shadow-bottom,\n.swiper-container-3d .swiper-cube-shadow {\n  -webkit-transform-style: preserve-3d;\n  transform-style: preserve-3d;\n}\n.swiper-container-3d .swiper-slide-shadow-left,\n.swiper-container-3d .swiper-slide-shadow-right,\n.swiper-container-3d .swiper-slide-shadow-top,\n.swiper-container-3d .swiper-slide-shadow-bottom {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n  z-index: 10;\n}\n.swiper-container-3d .swiper-slide-shadow-left {\n  background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));\n  background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n  background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n}\n.swiper-container-3d .swiper-slide-shadow-right {\n  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));\n  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n}\n.swiper-container-3d .swiper-slide-shadow-top {\n  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));\n  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n}\n.swiper-container-3d .swiper-slide-shadow-bottom {\n  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));\n  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));\n}\n/* IE10 Windows Phone 8 Fixes */\n.swiper-container-wp8-horizontal,\n.swiper-container-wp8-horizontal > .swiper-wrapper {\n  -ms-touch-action: pan-y;\n  touch-action: pan-y;\n}\n.swiper-container-wp8-vertical,\n.swiper-container-wp8-vertical > .swiper-wrapper {\n  -ms-touch-action: pan-x;\n  touch-action: pan-x;\n}\n.swiper-button-prev,\n.swiper-button-next {\n  position: absolute;\n  top: 50%;\n  width: 27px;\n  height: 44px;\n  margin-top: -22px;\n  z-index: 10;\n  cursor: pointer;\n  background-size: 27px 44px;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.swiper-button-prev.swiper-button-disabled,\n.swiper-button-next.swiper-button-disabled {\n  opacity: 0.35;\n  cursor: auto;\n  pointer-events: none;\n}\n.swiper-button-prev,\n.swiper-container-rtl .swiper-button-next {\n  background-image: url(\"data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E\");\n  left: 10px;\n  right: auto;\n}\n.swiper-button-next,\n.swiper-container-rtl .swiper-button-prev {\n  background-image: url(\"data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E\");\n  right: 10px;\n  left: auto;\n}\n.swiper-button-prev.swiper-button-white,\n.swiper-container-rtl .swiper-button-next.swiper-button-white {\n  background-image: url(\"data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E\");\n}\n.swiper-button-next.swiper-button-white,\n.swiper-container-rtl .swiper-button-prev.swiper-button-white {\n  background-image: url(\"data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E\");\n}\n.swiper-button-prev.swiper-button-black,\n.swiper-container-rtl .swiper-button-next.swiper-button-black {\n  background-image: url(\"data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E\");\n}\n.swiper-button-next.swiper-button-black,\n.swiper-container-rtl .swiper-button-prev.swiper-button-black {\n  background-image: url(\"data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E\");\n}\n.swiper-button-lock {\n  display: none;\n}\n.swiper-pagination {\n  position: absolute;\n  text-align: center;\n  -webkit-transition: 300ms opacity;\n  -o-transition: 300ms opacity;\n  transition: 300ms opacity;\n  -webkit-transform: translate3d(0, 0, 0);\n  transform: translate3d(0, 0, 0);\n  z-index: 10;\n}\n.swiper-pagination.swiper-pagination-hidden {\n  opacity: 0;\n}\n/* Common Styles */\n.swiper-pagination-fraction,\n.swiper-pagination-custom,\n.swiper-container-horizontal > .swiper-pagination-bullets {\n  bottom: 10px;\n  left: 0;\n  width: 100%;\n}\n/* Bullets */\n.swiper-pagination-bullets-dynamic {\n  overflow: hidden;\n  font-size: 0;\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {\n  -webkit-transform: scale(0.33);\n  -ms-transform: scale(0.33);\n  transform: scale(0.33);\n  position: relative;\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active {\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-main {\n  -webkit-transform: scale(1);\n  -ms-transform: scale(1);\n  transform: scale(1);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-prev {\n  -webkit-transform: scale(0.66);\n  -ms-transform: scale(0.66);\n  transform: scale(0.66);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-prev-prev {\n  -webkit-transform: scale(0.33);\n  -ms-transform: scale(0.33);\n  transform: scale(0.33);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-next {\n  -webkit-transform: scale(0.66);\n  -ms-transform: scale(0.66);\n  transform: scale(0.66);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-next-next {\n  -webkit-transform: scale(0.33);\n  -ms-transform: scale(0.33);\n  transform: scale(0.33);\n}\n.swiper-pagination-bullet {\n  width: 8px;\n  height: 8px;\n  display: inline-block;\n  border-radius: 100%;\n  background: #000;\n  opacity: 0.2;\n}\nbutton.swiper-pagination-bullet {\n  border: none;\n  margin: 0;\n  padding: 0;\n  -webkit-box-shadow: none;\n  box-shadow: none;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n}\n.swiper-pagination-clickable .swiper-pagination-bullet {\n  cursor: pointer;\n}\n.swiper-pagination-bullet-active {\n  opacity: 1;\n  background: #007aff;\n}\n.swiper-container-vertical > .swiper-pagination-bullets {\n  right: 10px;\n  top: 50%;\n  -webkit-transform: translate3d(0px, -50%, 0);\n  transform: translate3d(0px, -50%, 0);\n}\n.swiper-container-vertical > .swiper-pagination-bullets .swiper-pagination-bullet {\n  margin: 6px 0;\n  display: block;\n}\n.swiper-container-vertical > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n  -ms-transform: translateY(-50%);\n  transform: translateY(-50%);\n  width: 8px;\n}\n.swiper-container-vertical > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {\n  display: inline-block;\n  -webkit-transition: 200ms top, 200ms -webkit-transform;\n  transition: 200ms top, 200ms -webkit-transform;\n  -o-transition: 200ms transform, 200ms top;\n  transition: 200ms transform, 200ms top;\n  transition: 200ms transform, 200ms top, 200ms -webkit-transform;\n}\n.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {\n  margin: 0 4px;\n}\n.swiper-container-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {\n  left: 50%;\n  -webkit-transform: translateX(-50%);\n  -ms-transform: translateX(-50%);\n  transform: translateX(-50%);\n  white-space: nowrap;\n}\n.swiper-container-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {\n  -webkit-transition: 200ms left, 200ms -webkit-transform;\n  transition: 200ms left, 200ms -webkit-transform;\n  -o-transition: 200ms transform, 200ms left;\n  transition: 200ms transform, 200ms left;\n  transition: 200ms transform, 200ms left, 200ms -webkit-transform;\n}\n.swiper-container-horizontal.swiper-container-rtl > .swiper-pagination-bullets-dynamic .swiper-pagination-bullet {\n  -webkit-transition: 200ms right, 200ms -webkit-transform;\n  transition: 200ms right, 200ms -webkit-transform;\n  -o-transition: 200ms transform, 200ms right;\n  transition: 200ms transform, 200ms right;\n  transition: 200ms transform, 200ms right, 200ms -webkit-transform;\n}\n/* Progress */\n.swiper-pagination-progressbar {\n  background: rgba(0, 0, 0, 0.25);\n  position: absolute;\n}\n.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {\n  background: #007aff;\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  -webkit-transform: scale(0);\n  -ms-transform: scale(0);\n  transform: scale(0);\n  -webkit-transform-origin: left top;\n  -ms-transform-origin: left top;\n  transform-origin: left top;\n}\n.swiper-container-rtl .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {\n  -webkit-transform-origin: right top;\n  -ms-transform-origin: right top;\n  transform-origin: right top;\n}\n.swiper-container-horizontal > .swiper-pagination-progressbar,\n.swiper-container-vertical > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {\n  width: 100%;\n  height: 4px;\n  left: 0;\n  top: 0;\n}\n.swiper-container-vertical > .swiper-pagination-progressbar,\n.swiper-container-horizontal > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {\n  width: 4px;\n  height: 100%;\n  left: 0;\n  top: 0;\n}\n.swiper-pagination-white .swiper-pagination-bullet-active {\n  background: #ffffff;\n}\n.swiper-pagination-progressbar.swiper-pagination-white {\n  background: rgba(255, 255, 255, 0.25);\n}\n.swiper-pagination-progressbar.swiper-pagination-white .swiper-pagination-progressbar-fill {\n  background: #ffffff;\n}\n.swiper-pagination-black .swiper-pagination-bullet-active {\n  background: #000000;\n}\n.swiper-pagination-progressbar.swiper-pagination-black {\n  background: rgba(0, 0, 0, 0.25);\n}\n.swiper-pagination-progressbar.swiper-pagination-black .swiper-pagination-progressbar-fill {\n  background: #000000;\n}\n.swiper-pagination-lock {\n  display: none;\n}\n/* Scrollbar */\n.swiper-scrollbar {\n  border-radius: 10px;\n  position: relative;\n  -ms-touch-action: none;\n  background: rgba(0, 0, 0, 0.1);\n}\n.swiper-container-horizontal > .swiper-scrollbar {\n  position: absolute;\n  left: 1%;\n  bottom: 3px;\n  z-index: 50;\n  height: 5px;\n  width: 98%;\n}\n.swiper-container-vertical > .swiper-scrollbar {\n  position: absolute;\n  right: 3px;\n  top: 1%;\n  z-index: 50;\n  width: 5px;\n  height: 98%;\n}\n.swiper-scrollbar-drag {\n  height: 100%;\n  width: 100%;\n  position: relative;\n  background: rgba(0, 0, 0, 0.5);\n  border-radius: 10px;\n  left: 0;\n  top: 0;\n}\n.swiper-scrollbar-cursor-drag {\n  cursor: move;\n}\n.swiper-scrollbar-lock {\n  display: none;\n}\n.swiper-zoom-container {\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n  -ms-flex-align: center;\n  align-items: center;\n  text-align: center;\n}\n.swiper-zoom-container > img,\n.swiper-zoom-container > svg,\n.swiper-zoom-container > canvas {\n  max-width: 100%;\n  max-height: 100%;\n  -o-object-fit: contain;\n  object-fit: contain;\n}\n.swiper-slide-zoomed {\n  cursor: move;\n}\n/* Preloader */\n.swiper-lazy-preloader {\n  width: 42px;\n  height: 42px;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  margin-left: -21px;\n  margin-top: -21px;\n  z-index: 10;\n  -webkit-transform-origin: 50%;\n  -ms-transform-origin: 50%;\n  transform-origin: 50%;\n  -webkit-animation: swiper-preloader-spin 1s steps(12, end) infinite;\n  animation: swiper-preloader-spin 1s steps(12, end) infinite;\n}\n.swiper-lazy-preloader:after {\n  display: block;\n  content: '';\n  width: 100%;\n  height: 100%;\n  background-image: url(\"data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%20120%20120'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20xmlns%3Axlink%3D'http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink'%3E%3Cdefs%3E%3Cline%20id%3D'l'%20x1%3D'60'%20x2%3D'60'%20y1%3D'7'%20y2%3D'27'%20stroke%3D'%236c6c6c'%20stroke-width%3D'11'%20stroke-linecap%3D'round'%2F%3E%3C%2Fdefs%3E%3Cg%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(30%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(60%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(90%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(120%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(150%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.37'%20transform%3D'rotate(180%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.46'%20transform%3D'rotate(210%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.56'%20transform%3D'rotate(240%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.66'%20transform%3D'rotate(270%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.75'%20transform%3D'rotate(300%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.85'%20transform%3D'rotate(330%2060%2C60)'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E\");\n  background-position: 50%;\n  background-size: 100%;\n  background-repeat: no-repeat;\n}\n.swiper-lazy-preloader-white:after {\n  background-image: url(\"data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%20120%20120'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20xmlns%3Axlink%3D'http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink'%3E%3Cdefs%3E%3Cline%20id%3D'l'%20x1%3D'60'%20x2%3D'60'%20y1%3D'7'%20y2%3D'27'%20stroke%3D'%23fff'%20stroke-width%3D'11'%20stroke-linecap%3D'round'%2F%3E%3C%2Fdefs%3E%3Cg%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(30%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(60%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(90%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(120%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(150%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.37'%20transform%3D'rotate(180%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.46'%20transform%3D'rotate(210%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.56'%20transform%3D'rotate(240%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.66'%20transform%3D'rotate(270%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.75'%20transform%3D'rotate(300%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.85'%20transform%3D'rotate(330%2060%2C60)'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E\");\n}\n@-webkit-keyframes swiper-preloader-spin {\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n@keyframes swiper-preloader-spin {\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n/* a11y */\n.swiper-container .swiper-notification {\n  position: absolute;\n  left: 0;\n  top: 0;\n  pointer-events: none;\n  opacity: 0;\n  z-index: -1000;\n}\n.swiper-container-fade.swiper-container-free-mode .swiper-slide {\n  -webkit-transition-timing-function: ease-out;\n  -o-transition-timing-function: ease-out;\n  transition-timing-function: ease-out;\n}\n.swiper-container-fade .swiper-slide {\n  pointer-events: none;\n  -webkit-transition-property: opacity;\n  -o-transition-property: opacity;\n  transition-property: opacity;\n}\n.swiper-container-fade .swiper-slide .swiper-slide {\n  pointer-events: none;\n}\n.swiper-container-fade .swiper-slide-active,\n.swiper-container-fade .swiper-slide-active .swiper-slide-active {\n  pointer-events: auto;\n}\n.swiper-container-cube {\n  overflow: visible;\n}\n.swiper-container-cube .swiper-slide {\n  pointer-events: none;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n  z-index: 1;\n  visibility: hidden;\n  -webkit-transform-origin: 0 0;\n  -ms-transform-origin: 0 0;\n  transform-origin: 0 0;\n  width: 100%;\n  height: 100%;\n}\n.swiper-container-cube .swiper-slide .swiper-slide {\n  pointer-events: none;\n}\n.swiper-container-cube.swiper-container-rtl .swiper-slide {\n  -webkit-transform-origin: 100% 0;\n  -ms-transform-origin: 100% 0;\n  transform-origin: 100% 0;\n}\n.swiper-container-cube .swiper-slide-active,\n.swiper-container-cube .swiper-slide-active .swiper-slide-active {\n  pointer-events: auto;\n}\n.swiper-container-cube .swiper-slide-active,\n.swiper-container-cube .swiper-slide-next,\n.swiper-container-cube .swiper-slide-prev,\n.swiper-container-cube .swiper-slide-next + .swiper-slide {\n  pointer-events: auto;\n  visibility: visible;\n}\n.swiper-container-cube .swiper-slide-shadow-top,\n.swiper-container-cube .swiper-slide-shadow-bottom,\n.swiper-container-cube .swiper-slide-shadow-left,\n.swiper-container-cube .swiper-slide-shadow-right {\n  z-index: 0;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n}\n.swiper-container-cube .swiper-cube-shadow {\n  position: absolute;\n  left: 0;\n  bottom: 0px;\n  width: 100%;\n  height: 100%;\n  background: #000;\n  opacity: 0.6;\n  -webkit-filter: blur(50px);\n  filter: blur(50px);\n  z-index: 0;\n}\n.swiper-container-flip {\n  overflow: visible;\n}\n.swiper-container-flip .swiper-slide {\n  pointer-events: none;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n  z-index: 1;\n}\n.swiper-container-flip .swiper-slide .swiper-slide {\n  pointer-events: none;\n}\n.swiper-container-flip .swiper-slide-active,\n.swiper-container-flip .swiper-slide-active .swiper-slide-active {\n  pointer-events: auto;\n}\n.swiper-container-flip .swiper-slide-shadow-top,\n.swiper-container-flip .swiper-slide-shadow-bottom,\n.swiper-container-flip .swiper-slide-shadow-left,\n.swiper-container-flip .swiper-slide-shadow-right {\n  z-index: 0;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n}\n.swiper-container-coverflow .swiper-wrapper {\n  /* Windows 8 IE 10 fix */\n  -ms-perspective: 1200px;\n}\n", ""]);
-
-
-/***/ }),
-
-/***/ 171:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_app_vue_vue_type_style_index_0_id_09242242_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_app_vue_vue_type_style_index_0_id_09242242_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_app_vue_vue_type_style_index_0_id_09242242_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_app_vue_vue_type_style_index_0_id_09242242_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ 172:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// Module
-exports.push([module.i, "\np[data-v-09242242] {\n  font-family: \"PingFang SC\", \"Noto Serif CJK SC\";\n  width: 50px;\n  line-height: 125px;\n  font-weight: 100;\n  font-size: 150px;\n}\nspan[data-v-09242242] {\n  font-size: 200px;\n}\n.placed[data-v-09242242] {\n  position: absolute;\n  top: 50%;\n  left: 10%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 
 /***/ }),
@@ -8374,7 +8371,7 @@ if(false) {}
 
 /***/ }),
 
-/***/ 184:
+/***/ 182:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8383,31 +8380,276 @@ __webpack_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: ./node_modules/vue/dist/vue.runtime.esm.js
 var vue_runtime_esm = __webpack_require__(7);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/pages/2018/06/29/index/app.vue?vue&type=template&id=09242242&scoped=true&
-var appvue_type_template_id_09242242_scoped_true_render = function() {
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/pages/2019/08/14/index/app.vue?vue&type=template&id=2360910c&
+var appvue_type_template_id_2360910c_render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("saikou", { attrs: { postscript: _vm.postscript } }, [
-    _c("div", { staticClass: "placed" }, [
-      _c("p", [_c("span", [_vm._v("字")]), _vm._v(" 大\n    ")])
-    ])
-  ])
+  return _c(
+    "saikou",
+    { attrs: { postscript: _vm.postscript } },
+    [_c("center", [_c("canvas", { attrs: { id: "cvs" } })])],
+    1
+  )
 }
 var staticRenderFns = []
-appvue_type_template_id_09242242_scoped_true_render._withStripped = true
+appvue_type_template_id_2360910c_render._withStripped = true
 
 
-// CONCATENATED MODULE: ./src/pages/2018/06/29/index/app.vue?vue&type=template&id=09242242&scoped=true&
+// CONCATENATED MODULE: ./src/pages/2019/08/14/index/app.vue?vue&type=template&id=2360910c&
 
 // EXTERNAL MODULE: ./src/components/saikou.vue + 4 modules
 var saikou = __webpack_require__(9);
 
-// EXTERNAL MODULE: ./src/pages/2018/06/29/index/postscript.md
-var postscript = __webpack_require__(153);
+// EXTERNAL MODULE: ./src/pages/2019/08/14/index/postscript.md
+var postscript = __webpack_require__(154);
 var postscript_default = /*#__PURE__*/__webpack_require__.n(postscript);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/pages/2018/06/29/index/app.vue?vue&type=script&lang=js&
+// CONCATENATED MODULE: ./src/pages/2019/08/14/index/core.js
+var initHp = 10;
+var width = 800;
+var height = 600;
+var curses = ["啊", "疼", "我想回家", "好疼", "呜呜"];
+var beatEffectFrames = 7;
+var curseEffectFrames = 100;
+var curseSpeed = 2;
+var bloodEffectFrames = 100;
+var bloodInitSpeed = 10;
+var gravity = 3;
+var vibrationAmp = 5;
+var vibrationBaseFreq = 0.08;
+
+// rendering
+
+var bossPos = [250, 200];
+var gunThetaOffset = 0.1;
+var cursePos = [bossPos[0] - 100, bossPos[1] - 50];
+
+var initGameState = function initGameState() {
+  return {
+    frame: 0,
+    hp: initHp,
+    beats: 0,
+    curses: [],
+    bloods: [],
+    beatFrame: -beatEffectFrames
+  };
+};
+
+var gameState = void 0;
+
+var update = function update() {
+  gameState.frame += 1;
+
+  gameState.curses = gameState.curses.filter(function (curses) {
+    return gameState.frame - curses.startFrame < curseEffectFrames;
+  });
+
+  gameState.bloods = gameState.bloods.filter(function (blood) {
+    return gameState.frame - blood.startFrame < bloodEffectFrames;
+  });
+};
+
+var beat = function beat(x, y) {
+  // head
+  var x1 = bossPos[0] - x;
+  var y1 = bossPos[1] - 40 - y;
+  var r1 = 6400;
+
+  // body
+  var x2 = bossPos[0] - x;
+  var y2 = bossPos[1] + 70 - y;
+  var r2 = 3000;
+
+  // crucial
+  var x3 = bossPos[0] - x;
+  var y3 = bossPos[1] + 120 - y;
+  var r3 = 100;
+
+  if (core_render.loaded) {
+    if (x3 * x3 + y3 * y3 < r3) {
+      // hidden state
+      gameState.beats += 1;
+      gameState.beatFrame = gameState.frame;
+      gameState.bloods.push({
+        x: x,
+        y: y,
+        startFrame: gameState.frame,
+        direction: Math.random() * 2 * Math.PI
+      });
+      gameState.curses.push({
+        content: ["我！", "啊！"][Math.floor(Math.random() * 2)],
+        startFrame: gameState.frame
+      });
+    } else if (x1 * x1 + y1 * y1 < r1 || x2 * x2 + y2 * y2 < r2) {
+      gameState.beats += 1;
+      gameState.beatFrame = gameState.frame;
+      gameState.bloods.push({
+        x: x,
+        y: y,
+        startFrame: gameState.frame,
+        direction: Math.random() * 2 * Math.PI
+      });
+      gameState.curses.push({
+        content: curses[Math.floor(Math.random() * curses.length)],
+        startFrame: gameState.frame
+      });
+    }
+  }
+};
+
+var getCanvasPos = function getCanvasPos(cvs, e) {
+  var bound = cvs.getBoundingClientRect();
+
+  var x = e.clientX - bound.left * (cvs.width / bound.width);
+  var y = e.clientY - bound.top * (cvs.height / bound.height);
+
+  console.log(x, y);
+
+  return {
+    x: x,
+    y: y
+  };
+};
+
+var core_render = function render() {
+  if (!render.loaded) return;
+
+  var draw = render.draw;
+  var ctx = render.ctx;
+  var frame = gameState.frame;
+
+  render.clear();
+  // draw all things here
+
+  // draw renzha
+  var deltaBeatFrame = gameState.frame - gameState.beatFrame;
+  if (deltaBeatFrame < beatEffectFrames) {
+    var dx = vibrationAmp * Math.sin(deltaBeatFrame * 2 * Math.PI * vibrationBaseFreq * gameState.bloods.length);
+    var dy = vibrationAmp * Math.cos(deltaBeatFrame * 2 * Math.PI * vibrationBaseFreq * gameState.bloods.length);
+
+    draw("hit", bossPos[0] + dx, bossPos[1] + dy);
+
+    // draw mark
+    var lastBlood = gameState.bloods[gameState.bloods.length - 1];
+    draw("mark", lastBlood.x, lastBlood.y);
+    draw("gun", 75, height - 100, Math.atan((lastBlood.y - height + 100) / (lastBlood.x - 75)) + gunThetaOffset);
+  } else {
+    draw("idle", bossPos[0], bossPos[1]);
+    draw("gun", 75, height - 100, gunThetaOffset);
+  }
+
+  // draw blood
+  gameState.bloods.forEach(function (blood) {
+    var deltaBloodFrame = frame - blood.startFrame;
+    var dir = blood.direction;
+    var x = blood.x + bloodInitSpeed * Math.cos(dir) * deltaBloodFrame;
+    var y = blood.y + bloodInitSpeed * Math.sin(dir) * deltaBloodFrame + 0.5 * gravity * deltaBloodFrame * deltaBloodFrame;
+    draw("blood", x, y);
+  });
+
+  // draw curses
+  gameState.curses.forEach(function (curses) {
+    var deltaCurseFrame = frame - curses.startFrame;
+    ctx.fillStyle = "rgba(255, 0, 0, " + (1 - deltaCurseFrame / curseEffectFrames) + ")";
+    ctx.fillText(curses.content, cursePos[0], cursePos[1] - deltaCurseFrame * curseSpeed);
+  });
+};
+
+var initRenderer = function initRenderer(cvsId, atlas) {
+  var cvs = document.getElementById(cvsId);
+  var ctx = cvs.getContext("2d");
+
+  cvs.width = width;
+  cvs.height = height;
+
+  core_render.cvs = cvs;
+  core_render.ctx = ctx;
+
+  ctx.font = "35px Arial bold";
+
+  core_render.draw = function (atlas, x, y, theta) {
+    var image = core_render.images[atlas];
+    ctx.translate(x, y);
+    ctx.rotate(theta);
+    ctx.drawImage(image, -image.width / 2, -image.height / 2);
+    ctx.rotate(-theta);
+    ctx.translate(-x, -y);
+  };
+
+  core_render.clear = function () {
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
+  };
+
+  core_render.loaded = false;
+  core_render.images = {};
+
+  Promise.all(Object.keys(atlas).map(function (key) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      core_render.images[key] = img;
+      img.addEventListener("load", function () {
+        resolve();
+      });
+      img.src = atlas[key];
+    });
+  })).then(function () {
+    core_render.loaded = true;
+  });
+};
+
+var initKeyboardEvents = function initKeyboardEvents() {
+  document.addEventListener("mousedown", function (e) {
+    e.preventDefault();
+    var pos = getCanvasPos(cvs, e);
+    beat(pos.x, pos.y);
+  });
+
+  document.addEventListener("touchdown", function (e) {
+    e.preventDefault();
+    var pos = getCanvasPos(cvs, e);
+    beat(pos.x, pos.y);
+  });
+};
+
+var gameLoop = function gameLoop() {
+  update();
+  core_render();
+  window.requestAnimationFrame(gameLoop);
+};
+
+gameLoop.init = function (cvs, atlas) {
+  gameState = initGameState();
+  initRenderer(cvs, atlas);
+  initKeyboardEvents();
+};
+
+gameLoop.start = function () {
+  window.requestAnimationFrame(gameLoop);
+};
+
+/* harmony default export */ var core = (gameLoop);
+// EXTERNAL MODULE: ./src/pages/2019/08/14/index/img/blood.png
+var blood = __webpack_require__(155);
+var blood_default = /*#__PURE__*/__webpack_require__.n(blood);
+
+// EXTERNAL MODULE: ./src/pages/2019/08/14/index/img/hit.jpg
+var hit = __webpack_require__(156);
+var hit_default = /*#__PURE__*/__webpack_require__.n(hit);
+
+// EXTERNAL MODULE: ./src/pages/2019/08/14/index/img/idle.jpg
+var idle = __webpack_require__(157);
+var idle_default = /*#__PURE__*/__webpack_require__.n(idle);
+
+// EXTERNAL MODULE: ./src/pages/2019/08/14/index/img/mark.png
+var mark = __webpack_require__(158);
+var mark_default = /*#__PURE__*/__webpack_require__.n(mark);
+
+// EXTERNAL MODULE: ./src/pages/2019/08/14/index/img/gun.png
+var gun = __webpack_require__(159);
+var gun_default = /*#__PURE__*/__webpack_require__.n(gun);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/pages/2019/08/14/index/app.vue?vue&type=script&lang=js&
 //
 //
 //
@@ -8416,8 +8658,13 @@ var postscript_default = /*#__PURE__*/__webpack_require__.n(postscript);
 //
 //
 //
-//
-//
+
+
+
+
+
+
+
 
 
 
@@ -8430,18 +8677,24 @@ var postscript_default = /*#__PURE__*/__webpack_require__.n(postscript);
     return {
       postscript: postscript_default.a
     };
+  },
+  mounted: function mounted() {
+    core.init("cvs", {
+      blood: blood_default.a,
+      hit: hit_default.a,
+      idle: idle_default.a,
+      mark: mark_default.a,
+      gun: gun_default.a
+    });
+    core.start();
   }
 });
-// CONCATENATED MODULE: ./src/pages/2018/06/29/index/app.vue?vue&type=script&lang=js&
+// CONCATENATED MODULE: ./src/pages/2019/08/14/index/app.vue?vue&type=script&lang=js&
  /* harmony default export */ var index_appvue_type_script_lang_js_ = (appvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./src/pages/2018/06/29/index/app.vue?vue&type=style&index=0&id=09242242&scoped=true&lang=css&
-var appvue_type_style_index_0_id_09242242_scoped_true_lang_css_ = __webpack_require__(171);
-
 // EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 var componentNormalizer = __webpack_require__(3);
 
-// CONCATENATED MODULE: ./src/pages/2018/06/29/index/app.vue
-
+// CONCATENATED MODULE: ./src/pages/2019/08/14/index/app.vue
 
 
 
@@ -8451,20 +8704,20 @@ var componentNormalizer = __webpack_require__(3);
 
 var component = Object(componentNormalizer["a" /* default */])(
   index_appvue_type_script_lang_js_,
-  appvue_type_template_id_09242242_scoped_true_render,
+  appvue_type_template_id_2360910c_render,
   staticRenderFns,
   false,
   null,
-  "09242242",
+  null,
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "src/pages/2018/06/29/index/app.vue"
+component.options.__file = "src/pages/2019/08/14/index/app.vue"
 /* harmony default export */ var app = (component.exports);
-// CONCATENATED MODULE: ./src/pages/2018/06/29/index/app.js
+// CONCATENATED MODULE: ./src/pages/2019/08/14/index/app.js
 
 
 

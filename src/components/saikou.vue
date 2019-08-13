@@ -1,27 +1,25 @@
 <template>
   <div v-cloak class="main">
-  
     <div v-if="expired">
       <div class="expired">
         哎呀，
-        <br>
+        <br />
         这个内容过期了{{calcDuration()}}天。
       </div>
       <logo></logo>
     </div>
-  
+
     <swiper v-else :options="swiperOption">
       <swiper-slide>
         <slot></slot>
       </swiper-slide>
       <swiper-slide>
-        <div class="md-body">
+        <div class="postscript">
           <span v-html="postscript"></span>
         </div>
         <logo></logo>
       </swiper-slide>
     </swiper>
-  
   </div>
 </template>
 
@@ -51,13 +49,6 @@ function getDue() {
 export default {
   name: "saikou",
   props: ["postscript"],
-  filters: {
-    formatDate(date) {
-      return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join(
-        "/"
-      );
-    }
-  },
   components: {
     swiper,
     swiperSlide,
