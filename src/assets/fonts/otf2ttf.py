@@ -68,7 +68,7 @@ def otf_to_ttf(ttFont, post_format=POST_FORMAT, **kwargs):
 def main(args=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("input", metavar="INPUT")
-    parser.add_argument("-o", "--output")
+    parser.add_argument("output")
     parser.add_argument("-e", "--max-error", type=float, default=MAX_ERR)
     parser.add_argument("--post-format", type=float, default=POST_FORMAT)
     parser.add_argument(

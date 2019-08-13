@@ -1,41 +1,41 @@
 @font-face {
   font-family: "Noto Serif CJK SC";
-  src: url("../fonts/SourceHanSerifCN-ExtraLight.ttf");
+  src: url("../fonts/ttf/SourceHanSerifSC-ExtraLight.ttf");
   font-weight: 100;
 }
 
 @font-face {
   font-family: "Noto Serif CJK SC";
-  src: url("../fonts/SourceHanSerifCN-Light.ttf");
+  src: url("../fonts/ttf/SourceHanSerifSC-Light.ttf");
   font-weight: 200;
 }
 
 @font-face {
   font-family: "Noto Serif CJK SC";
-  src: url("../fonts/SourceHanSerifCN-Regular.ttf");
+  src: url("../fonts/ttf/SourceHanSerifSC-Regular.ttf");
   font-weight: 300;
 }
 
 @font-face {
   font-family: "Noto Serif CJK SC";
-  src: url("../fonts/SourceHanSerifCN-Medium.ttf");
+  src: url("../fonts/ttf/SourceHanSerifSC-Medium.ttf");
   font-weight: 400;
 }
 
 @font-face {
   font-family: "Noto Serif CJK SC";
-  src: url("../fonts/SourceHanSerifCN-SemiBold.ttf");
+  src: url("../fonts/ttf/SourceHanSerifSC-SemiBold.ttf");
   font-weight: 500;
 }
 
 @font-face {
   font-family: "Noto Serif CJK SC";
-  src: url("../fonts/SourceHanSerifCN-Bold.ttf");
+  src: url("../fonts/ttf/SourceHanSerifSC-Bold.ttf");
   font-weight: 600;
 }
 
 @font-face {
   font-family: "Noto Serif CJK SC";
-  src: url("../fonts/SourceHanSerifCN-Heavy.ttf");
+  src: url("../fonts/ttf/SourceHanSerifSC-Heavy.ttf");
   font-weight: 700;
 }
