@@ -1,9 +1,9 @@
 date=$(date +%Y/%m/%d)
-dir=src/pages/$date
+dir=src/pages/$date/index
 
 if [ -d $dir ]; then
-    echo $dir exists.
-    exit
+  echo $dir exists.
+  exit
 fi
 
 mkdir -p $dir

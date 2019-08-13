@@ -1,20 +1,17 @@
-'use strict'
-const merge = require('webpack-merge')
-const baseWebpackConfig = require('./webpack.base.conf')
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-
+"use strict";
+const merge = require("webpack-merge");
+const baseWebpackConfig = require("./webpack.base.conf");
+const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
 
 const prodWebpackConfig = merge(baseWebpackConfig, {
-  devtool: '#source-map',
+  devtool: "source-map",
   output: {
-    publicPath: ''
+    publicPath: "/daily-saikou/"
   },
   module: {
     rules: []
   },
-  plugins: [
-    new OptimizeCSSPlugin()
-  ]
-})
+  plugins: [new OptimizeCSSPlugin()]
+});
 
-module.exports = prodWebpackConfig
+module.exports = prodWebpackConfig;
