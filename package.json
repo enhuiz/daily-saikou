@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --config build/webpack.dev.conf.js",
     "build": "webpack --mode production --progress --config build/webpack.prod.conf.js",
+    "clean": "rm -rf docs",
     "make-today": "./make_today.sh",
     "server": "$(cd docs; x-www-browser 0.0.0.0:2333; python3 -m http.server 2333)"
   },
