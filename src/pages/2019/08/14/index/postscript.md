@@ -1,12 +1,9 @@
-# Props
+# 暴力情绪
 
+"生活已经那么困难了
 
-props: {
-  title: String,
-  likes: Number,
-  isPublished: Boolean,
-  commentIds: Array,
-  author: Object,
-  callback: Function,
-  contactsPromise: Promise // or any other constructor
-}
+上网还不能喷一喷傻逼
+
+怎么活？"
+
+——vczh

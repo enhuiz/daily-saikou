@@ -6,8 +6,8 @@
   background-color: #1b1d1c;
   color: white;
   text-align: left;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 200;
 }
 
 .postscript span {
@@ -16,5 +16,5 @@
 
 .postscript h1 {
   margin: 0;
-  font-weight: 400;
+  font-weight: 200;
 }

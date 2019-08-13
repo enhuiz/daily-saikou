@@ -1,8 +1,8 @@
 <template>
   <saikou v-bind:postscript="postscript">
-    <center>
+    <div class="canvas-wrapper">
       <canvas id="cvs"></canvas>
-    </center>
+    </div>
   </saikou>
 </template>
 
@@ -38,6 +38,13 @@ export default {
   }
 };
 </script>
-  
+
 <style>
+.canvas-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+ 
 </style>

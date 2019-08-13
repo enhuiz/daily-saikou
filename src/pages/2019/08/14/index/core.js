@@ -1,7 +1,16 @@
 let initHp = 10;
-let width = 800;
+let width = 400;
 let height = 600;
-let curses = ["啊", "疼", "我想回家", "好疼", "呜呜"];
+let curses = [
+  "啊啊啊",
+  "疼",
+  "我想回家",
+  "好疼",
+  "呜呜呜",
+  "我错了",
+  "再也不敢了"
+];
+let curseProb = 0.3;
 let beatEffectFrames = 7;
 let curseEffectFrames = 100;
 let curseSpeed = 2;
@@ -10,12 +19,16 @@ let bloodInitSpeed = 10;
 let gravity = 3;
 let vibrationAmp = 5;
 let vibrationBaseFreq = 0.08;
+let bulletSpeed = 60;
+let bulletLength = 30;
+let bulletWidth = 10;
 
 // rendering
 
 let bossPos = [250, 200];
-let gunThetaOffset = 0.1;
-let cursePos = [bossPos[0] - 100, bossPos[1] - 50];
+let gunThetaOffset = 0.095;
+let cursePos = [bossPos[0] - 80, bossPos[1] - 50];
+let gunPos = [100, 500];
 
 let initGameState = function() {
   return {
@@ -24,6 +37,7 @@ let initGameState = function() {
     beats: 0,
     curses: [],
     bloods: [],
+    bullets: [],
     beatFrame: -beatEffectFrames
   };
 };
@@ -40,52 +54,67 @@ let update = function() {
   gameState.bloods = gameState.bloods.filter(function(blood) {
     return gameState.frame - blood.startFrame < bloodEffectFrames;
   });
+
+  gameState.bullets = gameState.bullets.filter(function(bullet) {
+    let deltaBulletFrame = gameState.frame - bullet.startFrame;
+    let dir = bullet.direction;
+    let x = bullet.x + bulletSpeed * Math.cos(dir) * deltaBulletFrame;
+    let y = bullet.y + bulletSpeed * Math.sin(dir) * deltaBulletFrame;
+    return x < bullet.end_x || y > bullet.end_y;
+  });
 };
 
 let beat = function(x, y) {
   // head
   let x1 = bossPos[0] - x;
-  let y1 = bossPos[1] - 40 - y;
-  let r1 = 6400;
+  let y1 = bossPos[1] - 64 - y;
+  let r1 = 112;
 
   // body
   let x2 = bossPos[0] - x;
-  let y2 = bossPos[1] + 70 - y;
-  let r2 = 3000;
+  let y2 = bossPos[1] + 98 - y;
+  let r2 = 91;
 
   // crucial
   let x3 = bossPos[0] - x;
-  let y3 = bossPos[1] + 120 - y;
-  let r3 = 100;
+  let y3 = bossPos[1] + 180 - y;
+  let r3 = 13;
 
   if (render.loaded) {
-    if (x3 * x3 + y3 * y3 < r3) {
-      // hidden state
+    if (
+      x1 * x1 + y1 * y1 < r1 * r1 ||
+      x2 * x2 + y2 * y2 < r2 * r2 ||
+      x3 * x3 + y3 * y3 < r3 * r3
+    ) {
       gameState.beats += 1;
       gameState.beatFrame = gameState.frame;
+      gameState.bullets.push({
+        x: gunPos[0],
+        y: gunPos[1],
+        end_x: x,
+        end_y: y,
+        startFrame: gameState.frame,
+        direction: Math.atan((y - gunPos[1]) / (x - gunPos[0]))
+      });
       gameState.bloods.push({
         x: x,
         y: y,
         startFrame: gameState.frame,
         direction: Math.random() * 2 * Math.PI
       });
-      gameState.curses.push({
-        content: ["我！", "啊！"][Math.floor(Math.random() * 2)],
-        startFrame: gameState.frame
-      });
-    } else if (x1 * x1 + y1 * y1 < r1 || x2 * x2 + y2 * y2 < r2) {
-      gameState.beats += 1;
-      gameState.beatFrame = gameState.frame;
-      gameState.bloods.push({
-        x: x,
-        y: y,
-        startFrame: gameState.frame,
-        direction: Math.random() * 2 * Math.PI
-      });
-      gameState.curses.push({
-        content: curses[Math.floor(Math.random() * curses.length)],
-        startFrame: gameState.frame
-      });
+      if (Math.random() < curseProb) {
+        if (x3 * x3 + y3 * y3 < r3 * r3) {
+          gameState.curses.push({
+            content: ["？？", "啊！"][Math.floor(Math.random() * 2)],
+            startFrame: gameState.frame
+          });
+        } else {
+          gameState.curses.push({
+            content: curses[Math.floor(Math.random() * curses.length)],
+            startFrame: gameState.frame
+          });
+        }
+      }
     }
   }
 };
@@ -95,8 +124,6 @@ let getCanvasPos = function(cvs, e) {
 
   let x = e.clientX - bound.left * (cvs.width / bound.width);
   let y = e.clientY - bound.top * (cvs.height / bound.height);
-
-  console.log(x, y);
 
   return {
     x: x,
@@ -112,9 +139,8 @@ let render = function() {
   let frame = gameState.frame;
 
   render.clear();
-  // draw all things here
 
-  // draw renzha
+  // draw boss
   let deltaBeatFrame = gameState.frame - gameState.beatFrame;
   if (deltaBeatFrame < beatEffectFrames) {
     let dx =
@@ -143,15 +169,37 @@ let render = function() {
     draw("mark", lastBlood.x, lastBlood.y);
     draw(
       "gun",
-      75,
-      height - 100,
-      Math.atan((lastBlood.y - height + 100) / (lastBlood.x - 75)) +
+      gunPos[0],
+      gunPos[1],
+      Math.atan((lastBlood.y - gunPos[1]) / (lastBlood.x - gunPos[0])) +
         gunThetaOffset
     );
   } else {
     draw("idle", bossPos[0], bossPos[1]);
-    draw("gun", 75, height - 100, gunThetaOffset);
+    draw("gun", gunPos[0], gunPos[1], gunThetaOffset);
   }
+
+  // draw bullet
+  gameState.bullets.forEach(function(bullet) {
+    let deltaBulletFrame = frame - bullet.startFrame;
+    let dir = bullet.direction;
+    let x0 =
+      bullet.x +
+      (bulletSpeed * deltaBulletFrame + bulletLength) * Math.cos(dir);
+    let y0 =
+      bullet.y +
+      (bulletSpeed * deltaBulletFrame + bulletLength) * Math.sin(dir);
+
+    let x1 = bullet.x + bulletSpeed * Math.cos(dir) * deltaBulletFrame;
+    let y1 = bullet.y + bulletSpeed * Math.sin(dir) * deltaBulletFrame;
+
+    ctx.lineWidth = bulletWidth;
+    ctx.strokeStyle = "#f0dd92";
+    ctx.beginPath();
+    ctx.moveTo(x0, y0);
+    ctx.lineTo(x1, y1);
+    ctx.stroke();
+  });
 
   // draw blood
   gameState.bloods.forEach(function(blood) {
@@ -169,7 +217,7 @@ let render = function() {
   gameState.curses.forEach(function(curses) {
     let deltaCurseFrame = frame - curses.startFrame;
     ctx.fillStyle =
-      "rgba(255, 0, 0, " + (1 - deltaCurseFrame / curseEffectFrames) + ")";
+      "rgba(255, 20, 20, " + (1 - deltaCurseFrame / curseEffectFrames) + ")";
     ctx.fillText(
       curses.content,
       cursePos[0],
@@ -188,7 +236,7 @@ let initRenderer = (cvsId, atlas) => {
   render.cvs = cvs;
   render.ctx = ctx;
 
-  ctx.font = "35px Arial bold";
+  ctx.font = "50px Arial bold";
 
   render.draw = function(atlas, x, y, theta) {
     let image = render.images[atlas];
