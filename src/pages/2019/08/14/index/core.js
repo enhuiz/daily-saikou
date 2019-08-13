@@ -1,6 +1,6 @@
 let initHp = 10;
 let width = 400;
-let height = 600;
+let height = 550;
 let curses = [
   "啊啊啊",
   "疼",

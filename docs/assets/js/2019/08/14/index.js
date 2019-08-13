@@ -8428,7 +8428,7 @@ var postscript_default = /*#__PURE__*/__webpack_require__.n(postscript);
 // CONCATENATED MODULE: ./src/pages/2019/08/14/index/core.js
 var initHp = 10;
 var width = 400;
-var height = 600;
+var height = 550;
 var curses = ["啊啊啊", "疼", "我想回家", "好疼", "呜呜呜", "我错了", "再也不敢了"];
 var curseProb = 0.3;
 var beatEffectFrames = 7;
