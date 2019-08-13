@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --config build/webpack.dev.conf.js",
     "build": "webpack --mode production --progress --config build/webpack.prod.conf.js",
-    "create-today": "node create-today.js"
+    "make-today": "./make-today.js"
   },
   "dependencies": {
     "markdown-loader": "^3.0.0",
