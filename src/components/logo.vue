@@ -1,7 +1,9 @@
 <template>
   <footer>
     <div class="trim">
-      <a href="https://github.com/enhuiz/daily-saikou"><img :src="logo"></a>
+      <a href="https://github.com/enhuiz/daily-saikou">
+        <img :src="logo" />
+      </a>
     </div>
   </footer>
 </template>

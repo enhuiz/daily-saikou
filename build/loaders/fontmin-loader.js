@@ -28,17 +28,16 @@ module.exports = function (content) {
                 content: resultContent,
             });
 
-            console.log('Compressing font: ', url);
-
             let publicPath = "__webpack_public_path__ + " + JSON.stringify(url);
 
             this.emitFile(url, resultContent);
             callbackParam = "module.exports = " + publicPath + ";";
 
+            console.log(url);
+
             resolve(callbackParam);
         });
-    }).then(param => callback(null, param),
-        err => callback(err));
+    }).then(param => callback(null, param), callback);
 };
 
 module.exports.raw = true;

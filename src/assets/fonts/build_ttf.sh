@@ -1,6 +1,14 @@
 #!/bin/bash
+
+if [ ! -e SourceHanSansSC.zip ]; then
+    wget https://github.com/adobe-fonts/source-han-sans/raw/release/OTF/SourceHanSansSC.zip
+    unzip SourceHanSansSC.zip
+else
+    echo 'SourceHanSansSC.zip exists.'
+fi
+
 mkdir -p ttf
-files=(./source-han-serif/OTF/SimplifiedChinese/*.otf)
+files=(./SourceHanSansSC/*.otf)
 for in in ${files[@]}; do
     out=ttf/$(basename $in .otf).ttf
     python3 otf2ttf.py $in $out --post-format 3 &

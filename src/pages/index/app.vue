@@ -11,9 +11,10 @@
       <div class="centered">
         <p>
           对不起，
-          <br> 今天没上班。
-          <br> {{date}}，
-          <br> 又偷懒了一天。
+          <br />今天没上班。
+          <br />
+          {{date}}，
+          <br />又偷懒了一天。
         </p>
       </div>
       <logo></logo>
@@ -24,10 +25,7 @@
 <script>
 import "assets/css/fonts.css";
 import logo from "components/logo.vue";
-
-function getDateString(date) {
-  return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join("/");
-}
+import moment from "moment";
 
 export default {
   components: {
@@ -35,13 +33,13 @@ export default {
   },
   data() {
     return {
-      date: getDateString(new Date()),
+      date: moment().format("YYYY/MM/DD"),
       loading: true
     };
   },
   methods: {},
   created() {
-    let url = getDateString(new Date()) + "/";
+    let url = moment().format("YYYY/MM/DD/");
     fetch(url).then(response => {
       if (response.status === 404) {
         this.loading = false;

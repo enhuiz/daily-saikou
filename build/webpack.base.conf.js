@@ -4,16 +4,13 @@ const {
   join,
   resolve
 } = require('path')
-const webpack = require('webpack')
+
 const glob = require('glob')
+const fs = require('fs')
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-const extractCSS = new ExtractTextPlugin({
-  filename: 'assets/css/[name].css',
-  allChunks: true
-})
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const entries = {}
 const chunks = []
@@ -39,6 +36,23 @@ glob.sync('./src/pages/**/app.js').forEach(path => {
   htmlWebpackPluginArray.push(new HtmlWebpackPlugin(htmlConf))
 })
 
+
+function scanCharacters() {
+  let characters = new Set()
+
+  function updateCharacters(path) {
+    let str = (fs.readFileSync(path, 'utf8') || '')
+    characters = new Set([...characters, ...str])
+  }
+
+  glob.sync('./src/pages/**/*.{html,md,vue}').forEach(updateCharacters)
+  glob.sync('./src/components/*.vue').forEach(updateCharacters)
+
+  let digits = '0123456789'
+  characters = new Set([...characters, ...digits])
+  return [...characters];
+}
+
 const styleLoaderOptions = {
   loader: 'style-loader',
   options: {
@@ -47,20 +61,20 @@ const styleLoaderOptions = {
 }
 
 const cssOptions = [{
-    loader: 'css-loader',
-    options: {
-      sourceMap: true
-    }
-  },
-  {
-    loader: 'postcss-loader',
-    options: {
-      sourceMap: true
-    }
+  loader: 'css-loader',
+  options: {
+    sourceMap: true
   }
+},
+{
+  loader: 'postcss-loader',
+  options: {
+    sourceMap: true
+  }
+}
 ]
 
-const config = {
+module.exports = {
   entry: entries,
   output: {
     path: resolve(__dirname, '../docs'),
@@ -77,21 +91,10 @@ const config = {
     modules: ['node_modules', resolve(__dirname, 'loaders')]
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
-          loaders: {
-            css: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
-              use: cssOptions,
-              fallback: styleLoaderOptions
-            })),
-            postcss: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
-              use: cssOptions,
-              fallback: styleLoaderOptions
-            }))
-          }
-        }
       },
       {
         test: /\.js$/,
@@ -100,10 +103,12 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
-          use: cssOptions,
-          fallback: styleLoaderOptions
-        }))
+        use: [
+          process.env.NODE_ENV !== 'production'
+            ? 'vue-style-loader'
+            : MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
       },
       {
         test: /\.html$/,
@@ -128,7 +133,8 @@ const config = {
       },
       {
         test: /\.md$/,
-        use: [{
+        use: [
+          {
             loader: "html-loader"
           },
           {
@@ -136,7 +142,16 @@ const config = {
           }
         ]
       },
-
+      {
+        test: /\.(ttf|otf)$/,
+        use: [{
+          loader: "fontmin-loader",
+          options: {
+            name: 'assets/fonts/[name].[ext]',
+            text: scanCharacters().join(''),
+          }
+        }]
+      }
     ]
   },
   optimization: {
@@ -155,10 +170,11 @@ const config = {
     hints: false
   },
   plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    extractCSS
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'assets/css/[name].css',
+    }),
+    ...htmlWebpackPluginArray
   ]
 }
 
-config.plugins = [...config.plugins, ...htmlWebpackPluginArray]
-module.exports = config

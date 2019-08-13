@@ -6,3 +6,4 @@ npm-debug.log
 /src/**/*.ttf
 /src/**/*.png
 /src/**/*.jpg
+*.zip
