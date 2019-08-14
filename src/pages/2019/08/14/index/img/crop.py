@@ -6,7 +6,7 @@ def crop(path, scale=1):
     image = cv2.imread(path, cv2.IMREAD_UNCHANGED)
     if image.shape[-1] == 3:
         b, g, r = cv2.split(image)
-        alpha = (image.max(axis=-1) < 255) * 255
+        alpha = (image.max(axis=-1) < 200) * 255
         alpha = alpha.astype(np.uint8)
         image = cv2.merge((b, g, r, alpha))
 

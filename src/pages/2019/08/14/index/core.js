@@ -7,7 +7,8 @@ let curses = [
   "好疼",
   "呜呜呜",
   "我错了",
-  "再也不敢了"
+  "再也不敢了",
+  "我死了"
 ];
 let curseProb = 0.5;
 let shakeEffectFrames = 7;

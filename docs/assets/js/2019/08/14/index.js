@@ -8305,7 +8305,7 @@ if(false) {}
 /***/ 155:
 /***/ (function(module, exports) {
 
-module.exports = "<h1 id=\"暴力情绪\">暴力情绪</h1>\n<p>&quot;生活已经那么困难了</p>\n<p>上网还不能喷一喷傻逼</p>\n<p>怎么活？&quot;</p>\n<p>——vczh</p>\n";
+module.exports = "<h1 id=\"暴力情绪\">暴力情绪</h1>\n<p>谈起以暴制暴的方式</p>\n<p>鼠标与键盘都当不错</p>\n";
 
 /***/ }),
 
@@ -8319,14 +8319,14 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAfCAYAAADn
 /***/ 157:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "assets/img/hit.d7250bf.png";
+module.exports = __webpack_require__.p + "assets/img/hit.d08931a.png";
 
 /***/ }),
 
 /***/ 158:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "assets/img/idle.0290ba3.png";
+module.exports = __webpack_require__.p + "assets/img/idle.3c51581.png";
 
 /***/ }),
 
@@ -8430,7 +8430,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var width = 400;
 var height = 550;
-var curses = ["啊啊啊", "疼", "我想回家", "好疼", "呜呜呜", "我错了", "再也不敢了"];
+var curses = ["啊啊啊", "疼", "我想回家", "好疼", "呜呜呜", "我错了", "再也不敢了", "我死了"];
 var curseProb = 0.5;
 var shakeEffectFrames = 7;
 var curseEffectFrames = 100;
