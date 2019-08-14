@@ -12,8 +12,8 @@ import postscript from "./postscript.md";
 import gameLoop from "./core.js";
 
 import blood from "./img/blood.png";
-import hit from "./img/hit.jpg";
-import idle from "./img/idle.jpg";
+import hit from "./img/hit.png";
+import idle from "./img/idle.png";
 import crosshair from "./img/crosshair.png";
 import gun from "./img/gun.png";
 

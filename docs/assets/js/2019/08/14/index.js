@@ -8319,14 +8319,14 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAfCAYAAADn
 /***/ 157:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "assets/img/hit.c97bc9c.jpg";
+module.exports = __webpack_require__.p + "assets/img/hit.d7250bf.png";
 
 /***/ }),
 
 /***/ 158:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "assets/img/idle.d905387.jpg";
+module.exports = __webpack_require__.p + "assets/img/idle.0290ba3.png";
 
 /***/ }),
 
@@ -8441,8 +8441,8 @@ var maxBulletFrames = 200;
 var gravity = 3;
 var shakeAmp = 5;
 var shakeBaseFreq = 0.08;
-var bulletSpeed = 10;
-var bulletLength = 15;
+var bulletSpeed = 7;
+var bulletLength = 17;
 var bulletWidth = 5;
 var gunEffectFrames = 10;
 
@@ -8451,6 +8451,7 @@ var bossPos = [250, 200];
 var gunThetaOffset = 0.095;
 var cursePos = [bossPos[0] - 80, bossPos[1] - 50];
 var gunPos = [100, 500];
+var muzzleOffset = [50, 130];
 
 var initGameState = function initGameState() {
   return {
@@ -8509,12 +8510,17 @@ var squareHitTest = function squareHitTest(pos, center, halfSideLength) {
 
 var fire = function fire(pos) {
   if (core_render.loaded) {
+    var theta = Math.atan((pos[1] - gunPos[1]) / (pos[0] - gunPos[0]));
+
+    var muzzlePos = [gunPos[0] + muzzleOffset[0] * Math.cos(theta), gunPos[1] + muzzleOffset[1] * Math.sin(theta)];
+
     var bullet = {
-      pos: gunPos,
+      pos: muzzlePos,
       target: pos,
       startFrame: gameState.frame,
-      direction: Math.atan((pos[1] - gunPos[1]) / (pos[0] - gunPos[0])),
-      distance: Math.hypot(pos[0] - gunPos[0], pos[1] - gunPos[1])
+      theta: theta,
+      hit: false,
+      distance: Math.hypot(pos[0] - muzzlePos[0], pos[1] - muzzlePos[1])
     };
 
     gameState.bullets.push(bullet);
@@ -8532,20 +8538,23 @@ var fire = function fire(pos) {
         gameState.bloods.push({
           pos: pos,
           startFrame: frame,
-          direction: Math.random() * 2 * Math.PI
+          theta: Math.random() * 2 * Math.PI
         });
 
         bullet.hit = true;
 
         if (Math.random() < curseProb) {
-          if (circleHitTest(pos, [bossPos[0], bossPos[1] + 185], 10)) {
+          var font = randomInt(25, 45) + "px Arial bold";
+          if (circleHitTest(pos, [bossPos[0], bossPos[1] + 185], 20)) {
             gameState.curses.push({
               content: ["？？", "啊！"][Math.floor(Math.random() * 2)],
+              font: font,
               startFrame: frame
             });
           } else {
             gameState.curses.push({
               content: curses[Math.floor(Math.random() * curses.length)],
+              font: font,
               startFrame: frame
             });
           }
@@ -8561,6 +8570,10 @@ var getCanvasPos = function getCanvasPos(cvs, e) {
   var y = e.clientY - bound.top * (cvs.height / bound.height);
 
   return [x, y];
+};
+
+var randomInt = function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
 };
 
 var core_render = function render() {
@@ -8597,8 +8610,8 @@ var core_render = function render() {
   gameState.bullets.forEach(function (bullet) {
     var deltaBulletFrame = frame - bullet.startFrame;
 
-    var cosD = Math.cos(bullet.direction);
-    var sinD = Math.sin(bullet.direction);
+    var cosD = Math.cos(bullet.theta);
+    var sinD = Math.sin(bullet.theta);
 
     var x0 = bullet.pos[0] + (bulletSpeed * deltaBulletFrame - bulletLength) * cosD;
     var y0 = bullet.pos[1] + (bulletSpeed * deltaBulletFrame - bulletLength) * sinD;
@@ -8617,19 +8630,17 @@ var core_render = function render() {
   // draw blood
   gameState.bloods.forEach(function (blood) {
     var deltaBloodFrame = frame - blood.startFrame;
-    var dir = blood.direction;
-    var x = blood.pos[0] + bloodInitSpeed * Math.cos(dir) * deltaBloodFrame;
-    var y = blood.pos[1] + bloodInitSpeed * Math.sin(dir) * deltaBloodFrame + 0.5 * gravity * deltaBloodFrame * deltaBloodFrame;
+    var x = blood.pos[0] + bloodInitSpeed * Math.cos(blood.theta) * deltaBloodFrame;
+    var y = blood.pos[1] + bloodInitSpeed * Math.sin(blood.theta) * deltaBloodFrame + 0.5 * gravity * deltaBloodFrame * deltaBloodFrame;
     draw("blood", [x, y]);
   });
 
   // draw curses
-  gameState.curses.forEach(function (curses) {
-    var deltaCurseFrame = frame - curses.startFrame;
-    if (deltaCurseFrame > 0) {
-      ctx.fillStyle = "rgba(255, 20, 20, " + (1 - deltaCurseFrame / curseEffectFrames) + ")";
-      ctx.fillText(curses.content, cursePos[0], cursePos[1] - deltaCurseFrame * curseSpeed);
-    }
+  gameState.curses.forEach(function (curse) {
+    var deltaCurseFrame = frame - curse.startFrame;
+    ctx.font = curse.font;
+    ctx.fillStyle = "rgba(255, 20, 20, " + (1 - deltaCurseFrame / curseEffectFrames) + ")";
+    ctx.fillText(curse.content, cursePos[0], cursePos[1] - deltaCurseFrame * curseSpeed);
   });
 };
 
@@ -8642,8 +8653,6 @@ var initRenderer = function initRenderer(cvsId, atlas) {
 
   core_render.cvs = cvs;
   core_render.ctx = ctx;
-
-  ctx.font = "50px Arial bold";
 
   core_render.draw = function (atlas, pos, theta) {
     var _pos = _slicedToArray(pos, 2),
@@ -8714,11 +8723,11 @@ gameLoop.start = function () {
 var blood = __webpack_require__(156);
 var blood_default = /*#__PURE__*/__webpack_require__.n(blood);
 
-// EXTERNAL MODULE: ./src/pages/2019/08/14/index/img/hit.jpg
+// EXTERNAL MODULE: ./src/pages/2019/08/14/index/img/hit.png
 var hit = __webpack_require__(157);
 var hit_default = /*#__PURE__*/__webpack_require__.n(hit);
 
-// EXTERNAL MODULE: ./src/pages/2019/08/14/index/img/idle.jpg
+// EXTERNAL MODULE: ./src/pages/2019/08/14/index/img/idle.png
 var idle = __webpack_require__(158);
 var idle_default = /*#__PURE__*/__webpack_require__.n(idle);
 
