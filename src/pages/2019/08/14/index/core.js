@@ -27,10 +27,10 @@ let gunEffectFrames = 10;
 
 // rendering
 let bossPos = [250, 200];
-let gunThetaOffset = 0.095;
+let gunThetaOffset = 0.15;
 let cursePos = [bossPos[0] - 80, bossPos[1] - 50];
 let gunPos = [100, 500];
-let muzzleOffset = [50, 130];
+let muzzleOffset = [128, -42];
 
 let initGameState = function() {
   return {
@@ -96,11 +96,30 @@ let squareHitTest = (pos, center, halfSideLength) => {
 
 let fire = pos => {
   if (render.loaded) {
-    let theta = Math.atan((pos[1] - gunPos[1]) / (pos[0] - gunPos[0]));
+    //
+    //  \       /----------->
+    //   \theta/
+    //    \  /  gamma
+    //     \/___
 
+    let alpha = Math.atan(
+      Math.abs(pos[1] - gunPos[1]) / Math.abs(pos[0] - gunPos[0])
+    );
+    let beta = Math.acos(
+      Math.abs(muzzleOffset[1]) /
+        Math.hypot(pos[0] - gunPos[0], pos[1] - gunPos[1])
+    );
+    let theta = alpha + beta - Math.PI / 2;
+
+    let gamma = Math.atan(
+      Math.abs(muzzleOffset[1]) / Math.abs(muzzleOffset[0])
+    );
+
+    let delta = gamma + theta;
+    let diagonal = Math.hypot(muzzleOffset[0], muzzleOffset[1]);
     let muzzlePos = [
-      gunPos[0] + muzzleOffset[0] * Math.cos(theta),
-      gunPos[1] + muzzleOffset[1] * Math.sin(theta)
+      gunPos[0] + diagonal * Math.cos(delta),
+      gunPos[1] - diagonal * Math.sin(delta)
     ];
 
     let bullet = {
@@ -226,16 +245,16 @@ let render = function() {
   gameState.bullets.forEach(function(bullet) {
     let deltaBulletFrame = frame - bullet.startFrame;
 
-    let cosD = Math.cos(bullet.theta);
-    let sinD = Math.sin(bullet.theta);
+    let cos = Math.cos(bullet.theta);
+    let sin = Math.sin(bullet.theta);
 
     let x0 =
-      bullet.pos[0] + (bulletSpeed * deltaBulletFrame - bulletLength) * cosD;
+      bullet.pos[0] + (bulletSpeed * deltaBulletFrame - bulletLength) * cos;
     let y0 =
-      bullet.pos[1] + (bulletSpeed * deltaBulletFrame - bulletLength) * sinD;
+      bullet.pos[1] - (bulletSpeed * deltaBulletFrame - bulletLength) * sin;
 
-    let x1 = bullet.pos[0] + bulletSpeed * deltaBulletFrame * cosD;
-    let y1 = bullet.pos[1] + bulletSpeed * deltaBulletFrame * sinD;
+    let x1 = bullet.pos[0] + bulletSpeed * deltaBulletFrame * cos;
+    let y1 = bullet.pos[1] - bulletSpeed * deltaBulletFrame * sin;
 
     ctx.lineWidth = bulletWidth;
     ctx.strokeStyle = "#f0dd92";
