@@ -14,7 +14,7 @@ import gameLoop from "./core.js";
 import blood from "./img/blood.png";
 import hit from "./img/hit.jpg";
 import idle from "./img/idle.jpg";
-import mark from "./img/mark.png";
+import crosshair from "./img/crosshair.png";
 import gun from "./img/gun.png";
 
 export default {
@@ -31,7 +31,7 @@ export default {
       blood: blood,
       hit: hit,
       idle: idle,
-      mark: mark,
+      crosshair: crosshair,
       gun: gun
     });
     gameLoop.start();
@@ -46,5 +46,4 @@ export default {
   top: 50%;
   transform: translate(-50%, -50%);
 }
- 
 </style>

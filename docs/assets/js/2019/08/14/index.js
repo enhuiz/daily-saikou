@@ -8387,7 +8387,7 @@ exports.push([module.i, "/**\n * Swiper 4.5.0\n * Most modern mobile touch slide
 
 exports = module.exports = __webpack_require__(1)(false);
 // Module
-exports.push([module.i, "\n.canvas-wrapper {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n}\n \n", ""]);
+exports.push([module.i, "\n.canvas-wrapper {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 
 /***/ }),
@@ -8426,25 +8426,27 @@ var postscript = __webpack_require__(155);
 var postscript_default = /*#__PURE__*/__webpack_require__.n(postscript);
 
 // CONCATENATED MODULE: ./src/pages/2019/08/14/index/core.js
-var initHp = 10;
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var width = 400;
 var height = 550;
 var curses = ["啊啊啊", "疼", "我想回家", "好疼", "呜呜呜", "我错了", "再也不敢了"];
-var curseProb = 0.3;
-var beatEffectFrames = 7;
+var curseProb = 0.5;
+var shakeEffectFrames = 7;
 var curseEffectFrames = 100;
 var curseSpeed = 2;
 var bloodEffectFrames = 100;
 var bloodInitSpeed = 10;
+var maxBulletFrames = 200;
 var gravity = 3;
-var vibrationAmp = 5;
-var vibrationBaseFreq = 0.08;
-var bulletSpeed = 60;
-var bulletLength = 30;
-var bulletWidth = 10;
+var shakeAmp = 5;
+var shakeBaseFreq = 0.08;
+var bulletSpeed = 10;
+var bulletLength = 15;
+var bulletWidth = 5;
+var gunEffectFrames = 10;
 
 // rendering
-
 var bossPos = [250, 200];
 var gunThetaOffset = 0.095;
 var cursePos = [bossPos[0] - 80, bossPos[1] - 50];
@@ -8453,12 +8455,11 @@ var gunPos = [100, 500];
 var initGameState = function initGameState() {
   return {
     frame: 0,
-    hp: initHp,
-    beats: 0,
     curses: [],
     bloods: [],
     bullets: [],
-    beatFrame: -beatEffectFrames
+    shakes: [],
+    events: []
   };
 };
 
@@ -8475,76 +8476,91 @@ var update = function update() {
     return gameState.frame - blood.startFrame < bloodEffectFrames;
   });
 
+  gameState.shakes = gameState.shakes.filter(function (shake) {
+    return gameState.frame - shake.startFrame < shakeEffectFrames;
+  });
+
   gameState.bullets = gameState.bullets.filter(function (bullet) {
-    var deltaBulletFrame = gameState.frame - bullet.startFrame;
-    var dir = bullet.direction;
-    var x = bullet.x + bulletSpeed * Math.cos(dir) * deltaBulletFrame;
-    var y = bullet.y + bulletSpeed * Math.sin(dir) * deltaBulletFrame;
-    return x < bullet.end_x || y > bullet.end_y;
+    return !(bullet.hit && gameState.frame - bullet.startFrame < maxBulletFrames);
+  });
+
+  gameState.events = gameState.events.filter(function (event) {
+    if (event[0] <= gameState.frame) {
+      // event happens
+      event[1](gameState.frame);
+      return false;
+    } else {
+      return true;
+    }
   });
 };
 
-var beat = function beat(x, y) {
-  // head
-  var x1 = bossPos[0] - x;
-  var y1 = bossPos[1] - 64 - y;
-  var r1 = 112;
+var circleHitTest = function circleHitTest(pos, center, radius) {
+  var dx = center[0] - pos[0];
+  var dy = center[1] - pos[1];
+  return dx * dx + dy * dy < radius * radius;
+};
 
-  // body
-  var x2 = bossPos[0] - x;
-  var y2 = bossPos[1] + 98 - y;
-  var r2 = 91;
+var squareHitTest = function squareHitTest(pos, center, halfSideLength) {
+  var lower = [center[0] - halfSideLength, center[1] - halfSideLength];
+  var upper = [center[0] + halfSideLength, center[1] + halfSideLength];
+  return pos[0] >= lower[0] && pos[1] >= lower[1] && pos[0] < upper[0] && pos[1] < upper[1];
+};
 
-  // crucial
-  var x3 = bossPos[0] - x;
-  var y3 = bossPos[1] + 180 - y;
-  var r3 = 13;
-
+var fire = function fire(pos) {
   if (core_render.loaded) {
-    if (x1 * x1 + y1 * y1 < r1 * r1 || x2 * x2 + y2 * y2 < r2 * r2 || x3 * x3 + y3 * y3 < r3 * r3) {
-      gameState.beats += 1;
-      gameState.beatFrame = gameState.frame;
-      gameState.bullets.push({
-        x: gunPos[0],
-        y: gunPos[1],
-        end_x: x,
-        end_y: y,
-        startFrame: gameState.frame,
-        direction: Math.atan((y - gunPos[1]) / (x - gunPos[0]))
-      });
-      gameState.bloods.push({
-        x: x,
-        y: y,
-        startFrame: gameState.frame,
-        direction: Math.random() * 2 * Math.PI
-      });
-      if (Math.random() < curseProb) {
-        if (x3 * x3 + y3 * y3 < r3 * r3) {
-          gameState.curses.push({
-            content: ["？？", "啊！"][Math.floor(Math.random() * 2)],
-            startFrame: gameState.frame
-          });
-        } else {
-          gameState.curses.push({
-            content: curses[Math.floor(Math.random() * curses.length)],
-            startFrame: gameState.frame
-          });
+    var bullet = {
+      pos: gunPos,
+      target: pos,
+      startFrame: gameState.frame,
+      direction: Math.atan((pos[1] - gunPos[1]) / (pos[0] - gunPos[0])),
+      distance: Math.hypot(pos[0] - gunPos[0], pos[1] - gunPos[1])
+    };
+
+    gameState.bullets.push(bullet);
+
+    if (
+    // head
+    circleHitTest(pos, [bossPos[0], bossPos[1] - 40], 110) || squareHitTest(pos, [bossPos[0], bossPos[1] + 120], 70)) {
+      var hitFrame = gameState.frame + Math.ceil(bullet.distance / bulletSpeed);
+
+      gameState.events.push([hitFrame, function (frame) {
+        gameState.shakes.push({
+          startFrame: frame
+        });
+
+        gameState.bloods.push({
+          pos: pos,
+          startFrame: frame,
+          direction: Math.random() * 2 * Math.PI
+        });
+
+        bullet.hit = true;
+
+        if (Math.random() < curseProb) {
+          if (circleHitTest(pos, [bossPos[0], bossPos[1] + 185], 10)) {
+            gameState.curses.push({
+              content: ["？？", "啊！"][Math.floor(Math.random() * 2)],
+              startFrame: frame
+            });
+          } else {
+            gameState.curses.push({
+              content: curses[Math.floor(Math.random() * curses.length)],
+              startFrame: frame
+            });
+          }
         }
-      }
+      }]);
     }
   }
 };
 
 var getCanvasPos = function getCanvasPos(cvs, e) {
   var bound = cvs.getBoundingClientRect();
-
   var x = e.clientX - bound.left * (cvs.width / bound.width);
   var y = e.clientY - bound.top * (cvs.height / bound.height);
 
-  return {
-    x: x,
-    y: y
-  };
+  return [x, y];
 };
 
 var core_render = function render() {
@@ -8557,31 +8573,38 @@ var core_render = function render() {
   render.clear();
 
   // draw boss
-  var deltaBeatFrame = gameState.frame - gameState.beatFrame;
-  if (deltaBeatFrame < beatEffectFrames) {
-    var dx = vibrationAmp * Math.sin(deltaBeatFrame * 2 * Math.PI * vibrationBaseFreq * gameState.bloods.length);
-    var dy = vibrationAmp * Math.cos(deltaBeatFrame * 2 * Math.PI * vibrationBaseFreq * gameState.bloods.length);
-
-    draw("hit", bossPos[0] + dx, bossPos[1] + dy);
-
-    // draw mark
-    var lastBlood = gameState.bloods[gameState.bloods.length - 1];
-    draw("mark", lastBlood.x, lastBlood.y);
-    draw("gun", gunPos[0], gunPos[1], Math.atan((lastBlood.y - gunPos[1]) / (lastBlood.x - gunPos[0])) + gunThetaOffset);
+  if (gameState.shakes.length === 0) {
+    draw("idle", bossPos);
   } else {
-    draw("idle", bossPos[0], bossPos[1]);
-    draw("gun", gunPos[0], gunPos[1], gunThetaOffset);
+    gameState.shakes.forEach(function (shake) {
+      var deltaShakeFrame = frame - shake.startFrame;
+      var dx = shakeAmp * Math.sin(deltaShakeFrame * 2 * Math.PI * shakeBaseFreq * gameState.bloods.length);
+      var dy = shakeAmp * Math.cos(deltaShakeFrame * 2 * Math.PI * shakeBaseFreq * gameState.bloods.length);
+      draw("hit", [bossPos[0] + dx, bossPos[1] + dy]);
+    });
+  }
+
+  // draw gun and crosshair
+  var lastBullet = gameState.bullets[gameState.bullets.length - 1];
+  if (lastBullet && frame - lastBullet.startFrame < gunEffectFrames) {
+    draw("crosshair", lastBullet.target);
+    draw("gun", gunPos, Math.atan((lastBullet.target[1] - gunPos[1]) / (lastBullet.target[0] - gunPos[0])) + gunThetaOffset);
+  } else {
+    draw("gun", gunPos, gunThetaOffset);
   }
 
   // draw bullet
   gameState.bullets.forEach(function (bullet) {
     var deltaBulletFrame = frame - bullet.startFrame;
-    var dir = bullet.direction;
-    var x0 = bullet.x + (bulletSpeed * deltaBulletFrame + bulletLength) * Math.cos(dir);
-    var y0 = bullet.y + (bulletSpeed * deltaBulletFrame + bulletLength) * Math.sin(dir);
 
-    var x1 = bullet.x + bulletSpeed * Math.cos(dir) * deltaBulletFrame;
-    var y1 = bullet.y + bulletSpeed * Math.sin(dir) * deltaBulletFrame;
+    var cosD = Math.cos(bullet.direction);
+    var sinD = Math.sin(bullet.direction);
+
+    var x0 = bullet.pos[0] + (bulletSpeed * deltaBulletFrame - bulletLength) * cosD;
+    var y0 = bullet.pos[1] + (bulletSpeed * deltaBulletFrame - bulletLength) * sinD;
+
+    var x1 = bullet.pos[0] + bulletSpeed * deltaBulletFrame * cosD;
+    var y1 = bullet.pos[1] + bulletSpeed * deltaBulletFrame * sinD;
 
     ctx.lineWidth = bulletWidth;
     ctx.strokeStyle = "#f0dd92";
@@ -8595,16 +8618,18 @@ var core_render = function render() {
   gameState.bloods.forEach(function (blood) {
     var deltaBloodFrame = frame - blood.startFrame;
     var dir = blood.direction;
-    var x = blood.x + bloodInitSpeed * Math.cos(dir) * deltaBloodFrame;
-    var y = blood.y + bloodInitSpeed * Math.sin(dir) * deltaBloodFrame + 0.5 * gravity * deltaBloodFrame * deltaBloodFrame;
-    draw("blood", x, y);
+    var x = blood.pos[0] + bloodInitSpeed * Math.cos(dir) * deltaBloodFrame;
+    var y = blood.pos[1] + bloodInitSpeed * Math.sin(dir) * deltaBloodFrame + 0.5 * gravity * deltaBloodFrame * deltaBloodFrame;
+    draw("blood", [x, y]);
   });
 
   // draw curses
   gameState.curses.forEach(function (curses) {
     var deltaCurseFrame = frame - curses.startFrame;
-    ctx.fillStyle = "rgba(255, 20, 20, " + (1 - deltaCurseFrame / curseEffectFrames) + ")";
-    ctx.fillText(curses.content, cursePos[0], cursePos[1] - deltaCurseFrame * curseSpeed);
+    if (deltaCurseFrame > 0) {
+      ctx.fillStyle = "rgba(255, 20, 20, " + (1 - deltaCurseFrame / curseEffectFrames) + ")";
+      ctx.fillText(curses.content, cursePos[0], cursePos[1] - deltaCurseFrame * curseSpeed);
+    }
   });
 };
 
@@ -8620,7 +8645,11 @@ var initRenderer = function initRenderer(cvsId, atlas) {
 
   ctx.font = "50px Arial bold";
 
-  core_render.draw = function (atlas, x, y, theta) {
+  core_render.draw = function (atlas, pos, theta) {
+    var _pos = _slicedToArray(pos, 2),
+        x = _pos[0],
+        y = _pos[1];
+
     var image = core_render.images[atlas];
     ctx.translate(x, y);
     ctx.rotate(theta);
@@ -8654,13 +8683,13 @@ var initKeyboardEvents = function initKeyboardEvents() {
   document.addEventListener("mousedown", function (e) {
     e.preventDefault();
     var pos = getCanvasPos(cvs, e);
-    beat(pos.x, pos.y);
+    fire(pos);
   });
 
   document.addEventListener("touchdown", function (e) {
     e.preventDefault();
     var pos = getCanvasPos(cvs, e);
-    beat(pos.x, pos.y);
+    fire(pos);
   });
 };
 
@@ -8693,9 +8722,9 @@ var hit_default = /*#__PURE__*/__webpack_require__.n(hit);
 var idle = __webpack_require__(158);
 var idle_default = /*#__PURE__*/__webpack_require__.n(idle);
 
-// EXTERNAL MODULE: ./src/pages/2019/08/14/index/img/mark.png
-var mark = __webpack_require__(159);
-var mark_default = /*#__PURE__*/__webpack_require__.n(mark);
+// EXTERNAL MODULE: ./src/pages/2019/08/14/index/img/crosshair.png
+var crosshair = __webpack_require__(159);
+var crosshair_default = /*#__PURE__*/__webpack_require__.n(crosshair);
 
 // EXTERNAL MODULE: ./src/pages/2019/08/14/index/img/gun.png
 var gun = __webpack_require__(160);
@@ -8735,7 +8764,7 @@ var gun_default = /*#__PURE__*/__webpack_require__.n(gun);
       blood: blood_default.a,
       hit: hit_default.a,
       idle: idle_default.a,
-      mark: mark_default.a,
+      crosshair: crosshair_default.a,
       gun: gun_default.a
     });
     core.start();
